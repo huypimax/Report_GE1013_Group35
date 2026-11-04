@@ -1,151 +1,197 @@
 \documentclass[11pt, a4paper]{article}
-\usepackage[a4paper, margin=2.5cm]{geometry}\usepackage[T1, T5]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{mathptmx} % Cung cấp font giống hệt Times New Roman
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{iftex}
+\ifPDFTeX
+    \usepackage[T1, T5]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{mathptmx}
+\else
+    \usepackage{fontspec}
+    \setmainfont{texgyretermes-regular.otf}[
+        BoldFont=texgyretermes-bold.otf,
+        ItalicFont=texgyretermes-italic.otf,
+        BoldItalicFont=texgyretermes-bolditalic.otf
+    ]
+\fi
 \usepackage[english]{babel}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{hyperref}
 \usepackage{amsmath}
 \title{EARTH SCIENCE FIELDTRIP REPORT}
-\author{Group 83}
-\date{May 2026}
+\author{Group 35}
+\date{November 2026}
 
 \begin{document}
 
 % --- TITLE PAGE ---
 \begin{titlepage}
+    \thispagestyle{empty}
+    % Double-line page border, following the supplied cover reference.
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[line width=1pt]
+            ([xshift=0.9cm,yshift=-0.9cm]current page.north west)
+            rectangle
+            ([xshift=-0.9cm,yshift=0.9cm]current page.south east);
+        \draw[line width=0.45pt]
+            ([xshift=1.05cm,yshift=-1.05cm]current page.north west)
+            rectangle
+            ([xshift=-1.05cm,yshift=1.05cm]current page.south east);
+    \end{tikzpicture}
+
     \centering
-    \vspace*{1cm}
-    
-    {\large \textbf{VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY} \\
-    \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY} \\
-    \textbf{FACULTY OF GEOLOGY AND PETROLEUM ENGINEERING} \par}
-    
-    \vspace{4cm}
-    
-    {\Large Earth Science \par}
+    % Header: moved upwards and enlarged for better hierarchy.
+    \vspace*{0.55cm}
+    {\fontsize{14}{19}\selectfont\bfseries
+        VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY\\
+        HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY\\
+        FACULTY OF GEOLOGY AND PETROLEUM ENGINEERING\par}
+
+    % Larger logo, keeping its original aspect ratio.
+    \vspace{1.2cm}
+    \includegraphics[width=3.8cm,keepaspectratio]{images/logo_bk.png}\par
+    \vspace{0.45cm}
+
+    {\fontsize{16}{20}\selectfont\bfseries FIELD TRIP REPORT\par}
+    \vspace{0.12cm}
+    {\fontsize{14}{18}\selectfont\bfseries EARTH SCIENCE -- GE1013\par}
+    \vspace{0.3cm}
+    {\fontsize{12}{16}\selectfont\bfseries
+        TRIP 1: HO CHI MINH CITY -- VUNG TAU -- PHAN THIET\par}
+    {\fontsize{12}{16}\selectfont\bfseries
+        (30 OCTOBER -- 1 NOVEMBER 2026)\par}
+
     \vspace{0.5cm}
-    {\Huge \textbf{EARTH SCIENCE FIELDTRIP REPORT} \par}
-    
-    \vspace{3cm}
-    
-    \begin{table}[h]
-        \centering
-        \large
-        \renewcommand{\arraystretch}{1.5}
-        \begin{tabular}{>{\bfseries}l l}
-            Advisor: & Dr. Nguyễn Ngọc Thủy \\
-            Class: & A02 \\
-            Group: & 35 \\
-            Students: & Hồ Công Thành - 2313111 \\
-                      & Nguyễn Đình Huy - 2311175 \\
-                      & Nguyễn Thành Nhân - 2312440 \\
-                      & Thái Khắc Hùng - 2311306 \\
-                      & Cao Chí Nguyên - 2312331 \\
-        \end{tabular}
-    \end{table}
-    
-    \vfill
-    
-    {\large HO CHI MINH CITY, May 2026 \par}
+    {\fontsize{12}{16}\selectfont\bfseries
+        Class: A01\_A02 \qquad Group: 35\par}
+    \vspace{0.25cm}
+    {\fontsize{11}{15}\selectfont\bfseries
+        Advisor: Dr. Nguyễn Ngọc Thủy\par}
+
+    \vspace{1.6cm}
+    {\small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|>{\centering\arraybackslash}p{4.1cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{3.4cm}|}
+        \hline
+        \textbf{Student Name} & \textbf{Student ID} & \textbf{Contribution} & \textbf{Instructor's Assessment} \\
+        \hline
+        Hồ Công Thành & 2313111 & 100\% & \\
+        \hline
+        Nguyễn Đình Huy & 2311175 & 100\% & \\
+        \hline
+        Nguyễn Thành Nhân & 2312440 & 100\% & \\
+        \hline
+        Thái Khắc Hùng & 2311306 & 100\% & \\
+        \hline
+        Cao Chí Nguyên & 2312331 & 100\% & \\
+        \hline
+    \end{tabular}\par}
+
+    % Fixed near the bottom, independent of the table height.
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=south] at ([yshift=1.55cm]current page.south)
+            {\fontsize{11}{14}\selectfont\itshape Ho Chi Minh City -- 2026};
+    \end{tikzpicture}
 \end{titlepage}
 
 % --- TABLE OF CONTENTS ---
+% --- AUTOMATIC CONTENT LISTS ---
+% Compile twice to refresh page numbers in the lists.
 \tableofcontents
-\newpage
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{List of Figures}
 \listoffigures
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{List of Tables}
 \listoftables
-\newpage
+\clearpage
 
 % --- MAIN DOCUMENT ---
 \section{Introduction}
 
 \subsection{Purpose of Preparing the Field Trip Report}
-The purpose of this field trip report is to summarize, organize, and interpret the observations collected during the Earth Science fieldtrip. Instead of describing the visited locations only in the order of the itinerary, this report follows the structure of Earth systems, including the geosphere, hydrosphere, biosphere, atmosphere, and natural resources.
+An outcrop, a beach, and an industrial facility may appear to be very different places, yet each offers evidence of how the Earth works and how people use its resources. The GE1013 fieldtrip gave our group a chance to examine these connections beyond the classroom. Over three days, we travelled from the university area of Ho Chi Minh City through the Vung Tau coast and onward to the Phan Thiet area, recording what we could observe at each stop.
 
-Through the fieldtrip, students had the opportunity to observe geological materials and natural processes directly in real environments. The report focuses on connecting field evidence with theoretical knowledge learned in class, such as rock formation, weathering, sediment transportation, coastal processes, groundwater, and the use of geological resources in human activities.
+We prepared this report as a record of that work. Its purpose is to bring together our photographs, compass measurements, specimen observations, and notes taken during the lecturers' explanations, and then use this material to describe the processes encountered in the field. We are particularly interested in the contrast between fresh and weathered rock, the movement of sand by water and wind, the shaping of coastal landscapes, and the use of geological knowledge in quarrying and petroleum operations.
 
-Preparing this report also helped students develop important academic and fieldwork skills. These include taking field notes, collecting rock and sediment samples, using maps and compasses, taking photographs, recording videos, and interpreting geological features based on real observations. Therefore, the report serves not only as a summary of the fieldtrip but also as a reflection of the learning process and teamwork during the course.
+The report also provides an opportunity to reconsider our first impressions after the trip. A colour, a fracture, or a landform is an observation; explaining how it formed requires a reasoned interpretation. We therefore aim to describe the evidence clearly and relate it to the concepts studied in Earth Science, while recognising that a short visit cannot answer every geological question. Just as importantly, preparing a shared record allows us to combine the different contributions made by each group member.
 
 \subsection{Task Assignment Table of Group Members}
-During the fieldtrip, each member was assigned specific responsibilities to make sure that observations were recorded systematically and samples were collected properly. Although each student had a main task, all members supported one another during observation, discussion, sample collection, and documentation.
+To document the trip from different perspectives, the members of Group 35 divided the field responsibilities among photography, measurements, specimen collection, and note-taking. The following assignments reflect each member's main role during the fieldtrip; members also assisted one another whenever needed.
 
 \begin{table}[htbp]
     \centering
-    \caption{Task assignment of group members}
-    \begin{tabular}{clp{9cm}}
+    \caption[Task assignments of Group 35]{Task assignments of Group 35 during the fieldtrip}
+    \label{tab:group_assignments}
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}c p{3.6cm} p{8.7cm}@{}}
         \toprule
         \textbf{No.} & \textbf{Name} & \textbf{Main Tasks} \\
         \midrule
-        1 & Nguyễn Trung Nhân & Following the lecturer closely and collecting rock samples. \\
-        2 & Nguyễn Vĩnh Phú & Collecting samples and extracting sample information for observation. \\
-        3 & Nguyễn Kim Hoàng Phi & Collecting samples during field observations. \\
-        4 & Phan Nguyễn Khánh Mai & Taking notes and taking photos during the fieldtrip. \\
-        5 & Nguyễn Thị Yến Nhi & Taking notes and recording videos during the fieldtrip. \\
+        1 & Hồ Công Thành & Photographing and filming the activities and observations throughout the fieldtrip. \\
+        2 & Nguyễn Đình Huy & Measuring geological specimens and features using a geological compass. \\
+        3 & Nguyễn Thành Nhân & Accompanying the lecturer and recording essential explanations and observations. \\
+        4 & Thái Khắc Hùng & Accompanying the lecturer and collecting geological specimens. \\
+        5 & Cao Chí Nguyên & Accompanying the lecturer, collecting specimens, and taking field notes. \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \subsection{Natural, Technical, and Socio-economic Characteristics of the Study Area}
-The fieldtrip was conducted in Vung Tau and nearby areas, where students could observe a combination of natural landscapes, geological outcrops, coastal environments, and industrial facilities. The study area includes old and active quarries, coastal beaches, sand dune systems, hillside terrain, and petroleum-related industrial sites. These locations provided suitable conditions for studying Earth Science concepts in real field settings.
+The fieldtrip crossed several contrasting environments rather than focusing on a single geological exposure. At Ho Da in the VNU-HCM area, a former quarry provides access to bedrock, weathered material, and a water-filled excavation. Along the Vung Tau and Ho Tram coasts, waves, currents, and wind continually modify the sand and the shoreline. Farther along the route, the rocky headland at Mui Ke Ga contrasts with the sand dunes and the stream-cut slopes at Suoi Tien. Seeing these settings within one journey made differences in rock type, surface processes, and landscape development easier to recognise.
 
-From a natural perspective, the study area contains diverse geological materials and landforms. At VNU Lake, students observed andesite, an extrusive igneous rock related to volcanic activity. At Gia Quy Quarry, basaltic materials, pozzolan, and spheroidal weathering features were observed. At Sao Mai Quarry, granite and diabase provided evidence of intrusive igneous activity and cross-cutting relationships. Coastal locations such as Back Beach and Cua Lap showed marine sediments, aeolian sand dunes, coastal transportation, and deposition processes. The Lighthouse area provided a broader view of hillside terrain and coastal geomorphology.
+The places we visited also required different approaches to observation. At rocky sites, we looked for mineral characteristics, fractures, weathering features, and relationships between rock bodies. At beaches and sandy areas, we paid closer attention to grain size, sediment movement, and the shapes produced by wind or flowing water. The geological compass, collected samples, photographs, and written notes helped us document details that could otherwise be missed during a brief stop.
 
-From a technical perspective, the fieldtrip helped students practice basic geological field methods. These included collecting rock and sediment samples, using maps and compasses, recording field notes, taking photographs, and observing rock structures and sedimentary features. The use of smartphones and the Clino app also supported basic field measurements and documentation.
-
-From a socio-economic perspective, the study area demonstrates the relationship between geology and human activities. Gia Quy Quarry shows the extraction and use of basaltic and pozzolanic materials for construction and cement-related applications. Vietsovpetro represents the petroleum service industry in Vung Tau and shows how geological knowledge is applied in offshore exploration, energy production, and industrial development. Therefore, the fieldtrip area is valuable not only for geological study but also for understanding the practical role of Earth Science in society.
+Human activities formed another important part of the route. Gia Quy Quarry illustrates how geological materials are extracted and used, while the visit to Vietsovpetro introduced the engineering and operational side of offshore petroleum development. These stops encouraged us to consider not only the origin and properties of geological materials but also the practical decisions, environmental changes, and technical work associated with using them. Together, the sites provided a varied setting for our study of the geosphere, hydrosphere, atmosphere, biosphere, and natural resources.
 
 \subsection{Tentative Schedule}
-The Earth Science fieldtrip was organized over three days in Vung Tau and nearby coastal areas. Before the departure, a general fieldtrip plan was prepared to ensure that all activities, observation sites, and learning objectives could be completed effectively. The schedule included geological observations at igneous rock outcrops, coastal sedimentary environments, mining areas, and industrial locations related to petroleum geology.
+The GE1013 fieldtrip took place from 30 October to 1 November 2026. The journey was arranged to introduce the group to volcanic and intrusive rocks, coastal and wind-driven sedimentary processes, stream erosion, and the industrial applications of geology. The planned sequence of eight destinations is presented below in the order supplied for the trip; no separate arrival time is assigned where it has not been confirmed.
 
-The fieldtrip was designed to help students connect theoretical geological knowledge with practical field observations. At each location, students conducted geological observations, identified rock and sediment characteristics, analyzed geological structures, and discussed geological processes under the guidance of the lecturers.
+\subsubsection{Planned Route and Fieldtrip Photograph}
 
-\subsubsection{General Planning Schedule}
-The following figure presents the official fieldtrip schedule prepared before the excursion.
-
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    [Image: Official fieldtrip schedule for Earth Science (GE1013)]
-    \caption{Official fieldtrip schedule for Earth Science (GE1013).}
+    \includegraphics[width=0.88\textwidth,height=7.3cm,keepaspectratio]{xe4.jpg}
+    \caption[GE1013 fieldtrip participants (Vehicle 4)]{Members of the GE1013 field trip (Group 4)}
+    \label{fig:fieldtrip_group}
 \end{figure}
 
-The planned schedule included several important observation sites such as VNU Lake, Gia Quy Quarry, Sao Mai Quarry, Back Beach, Cua Lap, Vietsovpetro, and the Lighthouse area. Each site focused on different geological topics including igneous rocks, weathering, sedimentary processes, coastal geology, structural relationships, and industrial applications of geology.
-
-\subsubsection{Actual Fieldtrip Activities}
-During the fieldtrip, students participated in geological observations and practical activities at each scheduled stop. The activities included rock identification, sediment observation, structural interpretation, sample collection, field documentation, and discussions with lecturers regarding geological processes and environmental conditions.
+The itinerary began near the university in Ho Chi Minh City, continued through the Vung Tau and Ho Tram area, and ended at coastal and sandy landscapes farther east. The order of field stops was as follows:
 
 \begin{table}[htbp]
     \centering
+    \caption[Planned GE1013 fieldtrip itinerary (eight stops)]{Planned sequence of fieldtrip stops and main observation themes}
+    \label{tab:fieldtrip_route}
     \small
-    \renewcommand{\arraystretch}{1.3}
-    \caption{Overview of actual fieldtrip activities and geological topics}
-    \label{tab:actual_activities}
-    \begin{tabular}{p{2.3cm} p{2.8cm} p{3.2cm} p{4.4cm} p{2.5cm}}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}c p{4.15cm} p{8.0cm}@{}}
         \toprule
-        \textbf{Date / Time} & \textbf{Location} & \textbf{Coordinates} & \textbf{Main Activities} & \textbf{Main Topics} \\
+        \textbf{Stop} & \textbf{Destination} & \textbf{Main observation themes} \\
         \midrule
-        7:00 AM \newline 30/10/2026 & Ho Da \newline (VNU-HCM Lake) & Latitude: 10.877268°N \newline Longitude: 106.790556°E & Observing andesite bedrock, studying in-situ laterite weathering profile, and practicing field observation methods. & Andesite; laterite; chemical leaching \\
-        \midrule
-        10:00 AM \newline 30/10/2026 & Back Beach \newline (Bai Sau, \newline Vung Tau) & Latitude: 10.328259°N \newline Longitude: 107.088303°E & Analyzing beach sand mineralogy, identifying ilmenite heavy mineral placers, and studying wave swash-backwash sorting. & Marine sediments; coastal processes; ilmenite \\
-        \midrule
-        14:00 PM \newline 30/10/2026 & Vietsovpetro \newline (Le Loi, \newline Vung Tau) & Latitude: 10.360200°N \newline Longitude: 107.084696°E & Attending technical briefing on offshore petroleum geology, Cuu Long rift basin, and fractured granitic basement reservoirs. & Petroleum geology; energy resources; fractured basement \\
-        \midrule
-        8:00 AM \newline 31/10/2026 & Gia Quy Quarry & Latitude: 10.503907°N \newline Longitude: 107.272151°E & Examining Xuan Loc basalt, observing volcanic vesicles, columnar jointing, spheroidal weathering, and pozzolan deposits. & Basalt; pozzolan; spheroidal weathering; mining \\
-        \midrule
-        10:00 AM \newline 31/10/2026 & Cua Ho Tram -- \newline Loc An Coast & Latitude: 10.390890°N \newline Longitude: 107.158205°E & Investigating coastal erosion, rip-rap seawall protection, aeolian sand dunes, asymmetric wind ripples, and groundwater. & Coastal erosion; rip-rap seawall; wind ripples \\
-        \midrule
-        14:00 PM \newline 31/10/2026 & Mui Ke Ga \newline (Ke Ga Cape) & Latitude: 10.665000°N \newline Longitude: 107.890000°E & Observing Deo Ca Complex granite, intrusive diabase dykes, cross-cutting relationships, wave-cut platforms, and corestones. & Granite; diabase dykes; cross-cutting; wave erosion \\
-        \midrule
-        Morning \newline 01/11/2026 & Suoi Tien \newline (Fairy Stream, \newline Lam Dong) & Latitude: 11.550000°N \newline Longitude: 108.200000°E & Observing fluvial stream incision in red-and-white sand strata, basal bank undercutting, and badland pinnacles (fairy chimneys). & Fluvial erosion; micro-canyon badlands; hoodoos \\
+        1 & Ho Da (VNU-HCM, University Village) & Exposed rock, lateritic weathering, and the former quarry landscape. \\
+        2 & Back Beach (Bai Sau), Vung Tau & Beach sediments, wave action, and coastal sediment transport. \\
+        3 & Vietsovpetro & Petroleum geology, offshore operations, and applications of geological knowledge. \\
+        4 & Gia Quy Quarry & Basalt, volcanic textures, weathering, and construction-material extraction. \\
+        5 & Ho Tram -- Ba Ria & Coastal erosion and deposition, beach protection, and sandy environments. \\
+        6 & Mui Ke Ga & Granite, fractures, intrusive relationships, and wave action on rocky shores. \\
+        7 & Sand dunes & Wind-driven sediment transport and dune landforms. \\
+        8 & Suoi Tien (Fairy Stream) & Layered sand deposits, stream erosion, and the development of steep sandy slopes. \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Overall, the fieldtrip activities were completed successfully and provided students with valuable practical experience in geological observation and interpretation. The combination of field investigation, group discussion, and direct interaction with geological features helped strengthen students' understanding of Earth Science concepts learned in class.
+\subsubsection{Field Activities and Documentation}
+The aim at each destination was not simply to collect a rock sample or take a photograph. We first listened to the lecturer's explanation, identified the main feature to be examined, and then recorded the evidence available at the site. Where appropriate, group members used a geological compass, noted the appearance of rocks and sediments, collected permitted specimens, and took photographs and video for later review.
 
+The route gave us several opportunities to compare processes across locations. Rock exposures at Ho Da, Gia Quy, and Mui Ke Ga could be examined in terms of origin, texture, fractures, and weathering. Bai Sau and Ho Tram provided coastal examples, whereas the sand dunes and Suoi Tien allowed us to consider the different effects of wind and running water on loose sediments. Vietsovpetro added an industry-focused perspective to the geological observations.
+
+After the trip, our group brought the records together, checked the descriptions against the available photographs and notes, and organised the findings by Earth Science topic. Figure~\ref{fig:fieldtrip_group} preserves a moment from the fieldtrip, while Table~\ref{tab:fieldtrip_route} summarises the intended sequence of stops used to structure our observations.
 
 \section{Geosphere}
 \label{sec:geosphere}
@@ -198,7 +244,7 @@ At Stop 1 (Ho Da, VNU-HCM Quarry Lake), students observed an in-situ laterite pr
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Loc_An/2aobor9rbpoeyudgjwh4wwl67qlegypncuixtm521.jpg}
-    \caption{Laterite weathering profile observed at Ho Da, showing mottled reddish-brown and yellowish tones caused by residual iron and aluminum accumulation.}
+    \caption[Laterite weathering profile at Ho Da]{Laterite weathering profile observed at Ho Da, showing mottled reddish-brown and yellowish tones caused by residual iron and aluminum accumulation.}
     \label{fig:laterite_profile}
 \end{figure}
 
@@ -212,7 +258,7 @@ The outcrop displays key transitional weathering characteristics:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Loc_An/2aobor9rbs67ghjn9skw3eylelxvhq2z4dpthewo8.jpg}
-    \caption{Close-up view of nodular laterite showing rough surface, cellular pores, and concentrated iron-rich patches.}
+    \caption[Nodular laterite texture at Ho Da]{Close-up view of nodular laterite showing rough surface, cellular pores, and concentrated iron-rich patches.}
     \label{fig:laterite_nodules}
 \end{figure}
 
@@ -236,7 +282,7 @@ At Bai Sau (Vung Tau), sedimentation is controlled by the balance between wave u
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Loc_An/2aobor9rbq8ubcmcllcjclc2jqhdushh6j5ltfjq4.jpg}
-    \caption{Active swash zone and beach berm at the coastal study area, illustrating wave-reworked sediment sorting and littoral transport.}
+    \caption[Beach sediment sorting and wave action]{Active swash zone and beach berm at the coastal study area, illustrating wave-reworked sediment sorting and littoral transport.}
     \label{fig:beach_swash}
 \end{figure}
 
@@ -251,7 +297,7 @@ At Cua Ho Tram -- Loc An, the coast experiences ongoing shoreline retreat due to
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/coastal_erosion.jpg}
-    \caption{Eroded sandy beach scarp and wind-deflated sand surface, showing the interaction between wave erosion and aeolian transport.}
+    \caption[Coastal sand erosion and deflation]{Eroded sandy beach scarp and wind-deflated sand surface, showing the interaction between wave erosion and aeolian transport.}
     \label{fig:coastal_erosion1}
 \end{figure}
 
@@ -266,7 +312,7 @@ Landward of the high-tide line, onshore winds pick up dry sand through \textbf{s
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Loc_An/1wupuktmbuarxoilz0zmdfqpdxqhdwzhzkuye2agenjbodgvy1efhwdzj5woz2udbxg5.jpg}
-    \caption{Asymmetric wind ripples on coastal dune sand, showing sharp crestlines aligned perpendicular to onshore wind direction.}
+    \caption[Asymmetric wind ripples in coastal sand]{Asymmetric wind ripples on coastal dune sand, showing sharp crestlines aligned perpendicular to onshore wind direction.}
     \label{fig:wind_ripples}
 \end{figure}
 
@@ -286,7 +332,7 @@ During volcanic eruptions, magma undergoes sudden decompression as it rises from
         \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\textwidth]{images/Gia_Quy/a1d180cf6003e05db91241.jpg}
-        \caption{Massive Volcanic Rock at Gia Quy Quarry.}
+        \caption[Massive volcanic rock at Gia Quy Quarry]{Massive Volcanic Rock at Gia Quy Quarry.}
         \label{fig:Massive Volcanic Rock}
         \end{figure}
         
@@ -301,7 +347,7 @@ During volcanic eruptions, magma undergoes sudden decompression as it rises from
         \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\textwidth]{images/Gia_Quy/72031829f8e578bb21f428.jpg}
-        \caption{Vesicular Volcanic Rock at Gia Quy Quarry.}
+        \caption[Vesicular volcanic rock at Gia Quy Quarry]{Vesicular Volcanic Rock at Gia Quy Quarry.}
         \label{fig:Vesicular Volcanic Rock}
     \end{figure}
         \item \textbf{Formation Mechanism:} Forms along the upper crust, margins, or advancing fronts of lava flows. As magma approaches the surface, rapid decompression causes dissolved volatile gases to exsolve and expand rapidly, forming discrete gas bubbles. When the lava crust chills rapidly, these bubbles are frozen in place before they can escape.
@@ -326,7 +372,7 @@ Rocks are classified by the dominant mineral group they contain:
         \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\textwidth]{images/gia_quy_mau_canxit.jpg}
-        \caption{Vesicular Volcanic Rock at Gia Quy Quarry.}
+        \caption[Calcite specimen at Gia Quy Quarry]{Calcite specimen examined at Gia Quy Quarry.}
         \label{fig:canxit}
         \end{figure}
 \end{itemize}
@@ -345,7 +391,7 @@ At coastal outcrops around Bai Sau (Vung Tau), students observed rhyolite belong
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Loc_An/2aobor9rbvv0x0oxeylkkwnjd8vfcc97wyno6bhi18.jpg}
-    \caption{Fractured and weathered rhyolite outcrop near the coastal area, showing angular blocky jointing and oxidized surface alteration.}
+    \caption[Weathered rhyolite at the coast]{Fractured and weathered rhyolite outcrop near the coastal area, showing angular blocky jointing and oxidized surface alteration.}
     \label{fig:rhyolite_outcrop}
 \end{figure}
 
@@ -387,7 +433,7 @@ Diabase (also known as dolerite) is a mafic intrusive rock that is the subvolcan
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Mui_Ke_Ga/2aobor9radxi0shj6fbkkhpcawf9yrboelklkzy025.jpg}
-    \caption{Dark diabasic dyke cutting across the lighter host rock at the Suoi Tien (Fairy Stream), showing a sharp structural boundary.}
+    \caption[Diabase dyke and host rock at Mui Ke Ga]{Dark diabase dyke cutting across lighter host rock at Mui Ke Ga, showing a distinct geological contact.}
     \label{fig:diabase_dyke}
 \end{figure}
 
@@ -410,7 +456,7 @@ At Mui Ke Ga, dark diabase dykes slice cleanly through the light-colored host gr
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Mui_Ke_Ga/2aobor9raeakvh5f7f9y3qyzvfdwl5hnrzbfzesg30.jpg}
-    \caption{Cross-cutting relationship at Mui Ke Ga: a younger dark dyke cleanly transects the pre-existing jointed granitic host rock.}
+    \caption[Cross-cutting relationship at Mui Ke Ga]{Cross-cutting relationship at Mui Ke Ga: a younger dark dyke cleanly transects the pre-existing jointed granitic host rock.}
     \label{fig:cross_cutting}
 \end{figure}
 
@@ -426,7 +472,7 @@ The geosphere observations during the fieldtrip provided students with direct ev
     \centering
     \small
     \renewcommand{\arraystretch}{1.25}
-    \caption{Synthesis of Key Geosphere Processes and Field Observations Across Visited Stops}
+    \caption[Summary of geosphere field observations]{Synthesis of Key Geosphere Processes and Field Observations Across Visited Stops}
     \label{tab:geosphere_summary_table}
     \begin{tabular}{p{2.8cm} p{3.2cm} p{4.2cm} p{4.6cm}}
         \toprule
@@ -469,7 +515,7 @@ As surface water flows along the channel, it continuously undercuts the base of 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/suoi_tien.jpg}
-    \caption{Surface water flow and undercut sand cliffs observed at Suoi Tien.}
+    \caption[Stream erosion at Suoi Tien]{Surface water flow and undercut sand cliffs observed at Suoi Tien.}
     \label{fig:suoi_tien}
 \end{figure}
 
@@ -481,7 +527,7 @@ Rainwater penetrating through the sandy layers forms a shallow freshwater lens a
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/groundwater_dunes.jpg}
-    \caption{Aeolian sand dune surface acting as a groundwater recharge zone at Ho Tram.}
+    \caption[Coastal sand dunes and groundwater recharge]{Aeolian sand dune surface acting as a groundwater recharge zone at Ho Tram.}
     \label{fig:groundwater_dunes}
 \end{figure}
 
@@ -493,7 +539,7 @@ At Back Beach and Cua Ho Tram, continuous wave action and tidal currents drive i
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/coastal_erosion.jpg}
-    \caption{Eroded sandy beach scarp and wave impact observed along the coast.}
+    \caption[Coastal erosion and wave action]{Eroded sandy beach scarp and wave impact observed along the coast.}
     \label{fig:coastal_erosion}
 \end{figure}
 
@@ -502,7 +548,7 @@ At Mui Ke Ga, where rocky headlands intersect the ocean, wave energy is concentr
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ke_ga_coastal.jpg}
-    \caption{Wave action against rocky granite headlands observed at Mui Ke Ga.}
+    \caption[Waves acting on granite at Mui Ke Ga]{Wave action against rocky granite headlands observed at Mui Ke Ga.}
     \label{fig:ke_ga_coastal}
 \end{figure}
 
@@ -514,7 +560,7 @@ At Ho Da, past quarrying deepened the basin below the regional water table, allo
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ho_da_water.jpg}
-    \caption{Accumulated surface and groundwater filling the former quarry pit at Ho Da.}
+    \caption[Water accumulation at Ho Da Quarry]{Accumulated surface and groundwater filling the former quarry pit at Ho Da.}
     \label{fig:ho_da_water}
 \end{figure}
 
@@ -530,7 +576,7 @@ At Ho Da, the old quarry pit is now filled with water, and its rim is covered by
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ho_da_water.jpg}
-    \caption{Grass and shrubs colonizing the rim of the former quarry pit at Ho Da, with the water-filled pit in the background.}
+    \caption[Vegetation colonising the Ho Da quarry rim]{Grass and shrubs colonizing the rim of the former quarry pit at Ho Da, with the water-filled pit in the background.}
     \label{fig:ho_da_vegetation}
 \end{figure}
 
@@ -542,7 +588,7 @@ Gia Quy Quarry is an active open-pit site where fresh basalt and pozzolan are ex
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Gia_Quy/2e0ded200dec8db2d4fd27.jpg}
-    \caption{Small plants growing between broken basalt fragments at Gia Quy Quarry.}
+    \caption[Pioneer plants in Gia Quy Quarry]{Small plants growing between broken basalt fragments at Gia Quy Quarry.}
     \label{fig:gia_quy_plants}
 \end{figure}
 
@@ -551,7 +597,7 @@ Basalt weathers into clay-rich, nutrient-bearing soil that holds more water than
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Gia_Quy/fee177be9772172c4e6325.jpg}
-    \caption{Grass covering a weathered slope of the quarry at Gia Quy, showing early soil stabilization.}
+    \caption[Grass growing on Gia Quy Quarry slopes]{Grass covering a weathered slope of the quarry at Gia Quy, showing early soil stabilization.}
     \label{fig:gia_quy_slope}
 \end{figure}
 
@@ -561,7 +607,7 @@ Coastal vegetation was observed at both Bai Sau (Vung Tau) and the Cua Ho Tram -
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.82\textwidth]{images/bai_sau_atmosphere.png}
-    \caption{Casuarina trees and coastal shrubs behind the beach at Bai Sau, Vung Tau.}
+    \caption[Coastal vegetation at Bai Sau]{Casuarina trees and coastal shrubs behind the beach at Bai Sau, Vung Tau.}
     \label{fig:bai_sau_vegetation}
 \end{figure}
 
@@ -577,7 +623,7 @@ At Cua Ho Tram -- Loc An, creeping plants with round leaves and purple flowers (
         \centering
         \includegraphics[width=\linewidth,height=6.5cm,keepaspectratio]{images/Loc_An/2aobor9rbvkfyqwdupvy9qnzqgbn7wtiewqmsp6019.jpg}
     \end{minipage}
-    \caption{Left: creeping plants with purple flowers on sand at Cua Ho Tram -- Loc An. Right: shrubs growing beside the concrete tetrapods of the coastal protection structure.}
+    \caption[Creeping vegetation and shrubs at Loc An]{Left: creeping plants with purple flowers on sand at Cua Ho Tram -- Loc An. Right: shrubs growing beside the concrete tetrapods of the coastal protection structure.}
     \label{fig:loc_an_vegetation}
 \end{figure}
 
@@ -589,7 +635,7 @@ Mui Ke Ga is a granite headland where waves strike directly against bedrock. Eve
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ke_ga_coastal.jpg}
-    \caption{Vegetation on the granite headland at Mui Ke Ga, above the zone of wave action.}
+    \caption[Vegetation on Mui Ke Ga headland]{Vegetation on the granite headland at Mui Ke Ga, above the zone of wave action.}
     \label{fig:ke_ga_vegetation}
 \end{figure}
 
@@ -601,7 +647,7 @@ At Suoi Tien, the stream has cut into red and white sand layers and formed steep
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Suoi_Tien/2aobor9rae7ss0qpbhtt32edk7g7qlodcsqzrei441.jpg}
-    \caption{Trees and shrubs growing on top of the red sand cliff at Suoi Tien.}
+    \caption[Vegetation on sand cliffs at Suoi Tien]{Trees and shrubs growing on top of the red sand cliff at Suoi Tien.}
     \label{fig:suoi_tien_trees}
 \end{figure}
 
@@ -610,7 +656,7 @@ However, vegetation cannot fully prevent erosion on these steep slopes. In one l
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.72\textwidth]{images/Suoi_Tien/2aobor9radvrjxwecsousbmebrptzpw8neum5uy040.jpg}
-    \caption{A fallen tree on the eroded sand cliff at Suoi Tien, showing that slope failure can remove vegetation.}
+    \caption[Fallen tree and slope erosion at Suoi Tien]{A fallen tree on the eroded sand cliff at Suoi Tien, showing that slope failure can remove vegetation.}
     \label{fig:suoi_tien_fallen_tree}
 \end{figure}
 
@@ -621,7 +667,7 @@ Table~\ref{tab:biosphere_summary} summarizes the biosphere observations made at 
     \centering
     \small
     \renewcommand{\arraystretch}{1.3}
-    \caption{Summary of biosphere observations during the fieldtrip}
+    \caption[Summary of biosphere field observations]{Summary of biosphere observations during the fieldtrip}
     \label{tab:biosphere_summary}
     \begin{tabular}{p{2.8cm} p{4.4cm} p{6.2cm}}
         \toprule
@@ -657,7 +703,7 @@ This seasonal pattern provides context for the coastal environments visited at B
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth]{images/bai_sau_atmosphere.png}
-    \caption{Coastal setting at Bai Sau during the fieldtrip, showing the sky, sandy beach, exposed rocks, and shoreline vegetation.}
+    \caption[Atmospheric conditions at Bai Sau]{Coastal setting at Bai Sau during the fieldtrip, showing the sky, sandy beach, exposed rocks, and shoreline vegetation.}
     \label{fig:atmosphere_bai_sau}
 \end{figure}
 
@@ -670,7 +716,7 @@ For the sand-rich landscapes around Mui Ne, including the surroundings of Suoi T
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth]{images/ke_ga_coastal.jpg}
-    \caption{Coastal setting at Mui Ke Ga, showing a cloudy sky above the rocky shoreline and lighthouse.}
+    \caption[Atmospheric conditions at Mui Ke Ga]{Coastal setting at Mui Ke Ga, showing a cloudy sky above the rocky shoreline and lighthouse.}
     \label{fig:atmosphere_ke_ga}
 \end{figure}
 
@@ -689,7 +735,7 @@ The usefulness of construction stone depends on material quality as well as the 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth]{images/ho_da_water.jpg}
-    \caption{The post-mining landscape at Ho Da, with a water-filled excavation, exposed rock faces, and vegetation around the lake.}
+    \caption[Post-mining landscape at Ho Da]{The post-mining landscape at Ho Da, with a water-filled excavation, exposed rock faces, and vegetation around the lake.}
     \label{fig:resources_ho_da}
 \end{figure}
 
@@ -706,7 +752,7 @@ Basalt and other suitable igneous rocks can be processed into crushed stone~\cit
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.66\textwidth]{images/gia_quy_mat_mo.jpg}
-    \caption{Quarry face at Gia Quy, showing fractured rock and accumulated fragments at the foot of the exposure.}
+    \caption[Exposed quarry face at Gia Quy]{Quarry face at Gia Quy, showing fractured rock and accumulated fragments at the foot of the exposure.}
     \label{fig:resources_gia_quy_face}
 \end{figure}
 
@@ -738,7 +784,7 @@ The samples helped us distinguish the mineralogical interest of an occurrence fr
         \centering
         \includegraphics[width=\linewidth,height=3.8cm,keepaspectratio]{images/gia_quy_khu_xu_ly_da.jpg}
     \end{minipage}
-    \caption{Selected examples from the Gia Quy visit: an olivine-bearing rock specimen (left), a white calcite specimen (centre), and the material-handling area (right).}
+    \caption[Geological samples and facilities at Gia Quy]{Selected examples from the Gia Quy visit: an olivine-bearing rock specimen (left), a white calcite specimen (centre), and the material-handling area (right).}
     \label{fig:resources_gia_quy_materials}
 \end{figure}
 
@@ -759,7 +805,7 @@ The model helped us distinguish the resource beneath the seabed from the infrast
 \begin{figure}[H]
     \centering
     \includegraphics[height=8.5cm]{images/vietsovpetro_mo_hinh_mo_dau.jpg}
-    \caption{The group listening to an explanation beside an offshore-field model at Vietsovpetro.}
+    \caption[Offshore-field model at Vietsovpetro]{The group listening to an explanation beside an offshore-field model at Vietsovpetro.}
     \label{fig:resources_vietsov_field_model}
 \end{figure}
 
@@ -781,7 +827,7 @@ The exhibition therefore illustrated two applications of Earth Science: knowledg
         \centering
         \includegraphics[height=7.1cm]{images/vietsovpetro_mo_hinh_gian_co_dinh.jpg}
     \end{minipage}
-    \caption{Exhibition models of TAM DAO 02 (left) and an offshore platform with a steel jacket and deck facilities (right).}
+    \caption[TAM DAO 02 and offshore platform models]{Exhibition models of TAM DAO 02 (left) and an offshore platform with a steel jacket and deck facilities (right).}
     \label{fig:resources_vietsov_platforms}
 \end{figure}
 
@@ -817,15 +863,9 @@ In addition, our group would like to thank the supporting staff members and espe
 Overall, this fieldtrip will remain a precious and unforgettable memory for all members of our group. It gave us not only academic knowledge, but also practical field experience, friendship, teamwork, gratitude, and respect for nature. We believe that this fieldtrip was more than an academic activity; it was a journey of learning, appreciation, and memories that will stay with us for a long time.
 
 \clearpage
+\phantomsection
+\addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
-
-\bibitem{1} Vietnam Disaster Management Authority. Vietnam floods response plan 31 october 2020. \url{https://phongchongthientai.mard.gov.vn/en/Pages/vietnam-floods-response-plan--31-october-2020.aspx}, 2020. Accessed May 2026.
-
-\bibitem{2} VinWonders. Typhoon season in vietnam: Timing, risks, and travel advice. \url{https://vinwonders.com/en/wonderpedia/news/vietnam-typhoon-season/}, 2025. Accessed May 2026.
-
-\bibitem{3} Wikipedia contributors. Climate of vietnam. \url{https://en.wikipedia.org/wiki/Climate_of_Vietnam}, 2026. Accessed May 2026.
-
-\bibitem{4} Wikipedia contributors. Tropical cyclones in vietnam. \url{https://en.wikipedia.org/wiki/Tropical_cyclones_in_Vietnam}, 2026. Accessed May 2026.
 
 
 \bibitem{climate-qcvn} Ministry of Construction. \textit{QCVN 02:2022/BXD: National Technical Regulation on Natural Physical and Climatic Data for Construction}. Tables A.2, A.10, and A.25, 2022. \url{https://datafiles.chinhphu.vn/cpp/files/vbpq/2022/10/02-bxd.pdf}.
@@ -861,4 +901,3 @@ Overall, this fieldtrip will remain a precious and unforgettable memory for all 
 \end{thebibliography}
 
 \end{document}
-```eof
