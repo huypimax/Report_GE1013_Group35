@@ -1,0 +1,24 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-halt-on-error",
+                "%DOC%"
+            ],
+            "cwd": "%DIR%"
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex x2",
+            "tools": ["xelatex", "xelatex"]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "xelatex x2",
+    "latex-workshop.latex.outDir": "%DIR%"
+}
